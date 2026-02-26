@@ -1,0 +1,23 @@
+import pandas as pd
+import random
+
+# --- Generar películas ---
+titulos = ["El Viaje Estelar", "Amor en la Ciudad", "La Sombra del Crimen",
+           "Risas Eternas", "El Último Guerrero", "Secretos del Mar",
+           "Corazones Rotos", "El Misterio del Bosque", "La Máquina del Tiempo", "El Arte de Ganar"]
+generos = ["Acción", "Comedia", "Drama", "Romance", "Thriller", "Terror", "Ciencia Ficción", "Deporte"]
+
+peliculas = {}
+
+for i in range(1, 101):
+    peliculas[i] = {
+        "titulo": random.choice(titulos),
+        "anio": random.randint(2000, 2025),
+        "genero": random.choice(generos),
+        "calificacion": round(random.uniform(5.0, 9.5), 1)
+    }
+
+# --- Convertir a DataFrame para análisis ---
+df_peliculas = pd.DataFrame.from_dict(peliculas, orient="index")
+# --- Exportar a CSV ---
+df_peliculas.to_csv("datosPeliculas.csv", index=False, encoding="utf-8")
