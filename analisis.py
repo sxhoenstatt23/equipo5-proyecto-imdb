@@ -36,3 +36,5 @@ plt.ylabel("Calificación promedio")
 
 # Mostramos la gráfica en pantalla
 plt.show()
+
+#fin
