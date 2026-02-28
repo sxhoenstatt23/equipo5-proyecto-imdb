@@ -1,40 +1,32 @@
 # Archivo: analisis.py
-# Autor: Rolando Garcia
-# Fecha de modificación: 26/02/2026 11:23
-# Descripción: Análisis de películas filtradas por género
+# Co-autores: Natalie (NGLC) y Rolando Garcia (RG)
+# Fecha de modificación: 27/02/2026
+# Descripción: Análisis de películas filtradas por género (Resolución de conflicto)
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# RG - 26/02/2026 
-# Cargamos el archivo CSV generado previamente con datos de películas
-df = pd.read_csv("datosPeliculas.csv")
+# RG/NGLC - 27/02/2026 
+# Cargamos los datos desde el archivo CSV
+df = pd.read_csv("datosPeliculas.csv") 
 
-# RG - 26/02/2026
-# Eliminamos filas que tengan valores nulos en columnas importantes
-# Esto asegura que el análisis no tenga errores por datos faltantes
+# NGLC - Eliminamos filas con datos faltantes para evitar errores
+# RG - Esto asegura que el análisis sea preciso
 df = df.dropna(subset=["titulo", "anio", "genero", "calificacion"])
 
-# RG - 26/02/2026
-# Filtramos las películas por un género específico (en este caso "Terror")
-# str.contains permite buscar coincidencias dentro del texto
-genero = "Terror"
-df_genero = df[df["genero"].str.contains(genero)]
+# Filtramos por género (Se puede cambiar a 'comedia' o 'Terror')
+genero = "comedia"
+df_genero = df[df["genero"].str.contains(genero, case=False)]
 
-# RG - 26/02/2026
-# Agrupamos las películas por año y calculamos el promedio de calificación para cada año
+# Agrupamos por año y calculamos el promedio
 promedio_por_año = df_genero.groupby("anio")["calificacion"].mean()
 
-# RG - 26/02/2026
-# Creamos una gráfica de línea para visualizar la evolución del promedio de calificación a lo largo del tiempo
-plt.figure()
+# Generación de la gráfica
 promedio_por_año.plot()
 
-plt.title("Promedio de calificación por año (Género: Terror)")
+plt.title(f"Promedio de calificación por año (Género: {genero})")
 plt.xlabel("Año")
 plt.ylabel("Calificación promedio")
 
-# Mostramos la gráfica en pantalla
+# Firma de resolución de conflicto: Schoenstatt Olalde
 plt.show()
-
-#fin
