@@ -1,16 +1,18 @@
+# NGLC 27/02/2026
 import pandas as pd
 import random
 
-# --- Generar películas ---
+# ---Titulos ---
 titulos = ["El Viaje Estelar", "Amor en la Ciudad", "La Sombra del Crimen",
            "Risas Eternas", "El Último Guerrero", "Secretos del Mar",
            "Corazones Rotos", "El Misterio del Bosque", "La Máquina del Tiempo", "El Arte de Ganar"]
+# Generos para las peliculas
 generos = ["Acción", "Comedia", "Drama", "Romance", "Thriller", "Terror", "Ciencia Ficción", "Deporte"]
 
-peliculas = {}
+peliculas = {} # Diccionario para almacenar los datos de las películas
 
-for i in range(1, 101):
-    peliculas[i] = {
+for i in range(1, 101): # Generar 100 películas
+    peliculas[i] = { 
         "titulo": random.choice(titulos),
         "anio": random.randint(2000, 2025),
         "genero": random.choice(generos),
